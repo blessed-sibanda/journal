@@ -32,14 +32,31 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
         ),
+        actions: [
+          IconButton(
+            onPressed: () {
+              // TODO: Add signOut method
+            },
+            icon: const Icon(Icons.exit_to_app),
+            color: Colors.lightGreen.shade800,
+          ),
+        ],
       ),
       body: Center(
         child: Container(),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 0.0,
+        child: Container(
+          height: 44.0,
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              colors: [Colors.lightGreen.shade50, Colors.lightGreen],
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
       ),
     );
   }
