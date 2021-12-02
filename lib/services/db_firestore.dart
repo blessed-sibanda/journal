@@ -1,0 +1,67 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:journal/models/journal.dart';
+
+import 'db_firestore_api.dart';
+
+class DbFirestoreService implements DbApi {
+  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final String _collectionJournals = 'journals';
+
+  DbFirestoreService() {}
+
+  @override
+  Future<bool> addJournal(Journal journal) async {
+    DocumentReference _documentReference =
+        await _firestore.collection(_collectionJournals).add({
+      'date': journal.date,
+      'mood': journal.mood,
+      'note': journal.note,
+      'uid': journal.uid,
+    });
+    return _documentReference.id != null;
+  }
+
+  @override
+  void deleteJournal(Journal journal) async {
+    await _firestore
+        .collection(_collectionJournals)
+        .doc(journal.documentID)
+        .delete()
+        .catchError((error) => print('Error deleting: $error'));
+  }
+
+  @override
+  Future<Journal> getJournal(String documentID) {
+    return _firestore
+        .collection(_collectionJournals)
+        .where('id', isEqualTo: documentID)
+        .get()
+        .then((doc) => Journal.fromDoc(doc));
+  }
+
+  @override
+  Stream<List<Journal>> getJournalList(String uid) {
+    return _firestore
+        .collection(_collectionJournals)
+        .where('uid', isEqualTo: uid)
+        .snapshots()
+        .map((QuerySnapshot snapshot) {
+      List<Journal> _journalDocs =
+          snapshot.docs.map((doc) => Journal.fromDoc(doc)).toList();
+      _journalDocs.sort((j1, j2) => j2.date.compareTo(j1.date));
+      return _journalDocs;
+    });
+  }
+
+  @override
+  void updateJournal(Journal journal) async {
+    await _firestore
+        .collection(_collectionJournals)
+        .doc(journal.documentID)
+        .update({
+      'date': journal.date,
+      'mood': journal.mood,
+      'note': journal.note,
+    }).catchError((error) => print('Error updating: $error'));
+  }
+}
