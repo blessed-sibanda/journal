@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "398444178290",
+    "project_id": "journal-dabc4",
+    "storage_bucket": "journal-dabc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:398444178290:android:657849a0b0899446c9cbeb",
+        "android_client_info": {
+          "package_name": "com.example.journal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "398444178290-br22et35ssru17ljhkhb8rvsaun5tlnc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXj92eDW23qUMLlFahAUgvXxdjcWzx468"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "398444178290-br22et35ssru17ljhkhb8rvsaun5tlnc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
