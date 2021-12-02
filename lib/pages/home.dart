@@ -45,6 +45,15 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Container(),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'Add Journal Entry',
+        backgroundColor: Colors.lightGreen.shade300,
+        child: const Icon(Icons.add),
+        onPressed: () async {
+          // TODO: Add _addOrEditJournal method
+        },
+      ),
       bottomNavigationBar: BottomAppBar(
         elevation: 0.0,
         child: Container(
