@@ -2,7 +2,7 @@ import 'dart:async';
 
 class Validators {
   final validateEmail = StreamTransformer.fromHandlers(
-    handleData: (String email, sink) {
+    handleData: (String email, EventSink<String> sink) {
       if (email.contains('@') && email.contains('.')) {
         sink.add(email);
       } else if (email.isNotEmpty) {
@@ -12,7 +12,7 @@ class Validators {
   );
 
   final validatePassword = StreamTransformer.fromHandlers(
-    handleData: (String password, sink) {
+    handleData: (String password, EventSink<String> sink) {
       if (password.length >= 6) {
         sink.add(password);
       } else if (password.isNotEmpty) {
