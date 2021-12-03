@@ -13,7 +13,7 @@ class MoodIcon {
     required this.icon,
   });
 
-  List<MoodIcon> get list => _moodIconsList;
+  static List<MoodIcon> get list => _moodIconsList;
 
   IconData getMoodIcon(String mood) =>
       list.firstWhere((icon) => icon.title == mood).icon;
