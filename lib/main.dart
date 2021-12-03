@@ -7,8 +7,11 @@ import 'package:journal/services/authentication.dart';
 import 'package:journal/services/db_firestore.dart';
 import 'pages/home.dart';
 import 'pages/login.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp());
 }
 
@@ -30,9 +33,10 @@ class MyApp extends StatelessWidget {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Container(
                 color: Colors.lightGreen,
-                child: const CircularProgressIndicator(),
+                child: const Center(child: CircularProgressIndicator()),
               );
-            } else if (snapshot.hasData) {
+            } else if (snapshot.hasData &&
+                snapshot.data.toString().isNotEmpty) {
               return HomeBlocProvider(
                 child: _buildMaterialApp(const MyHomePage(title: 'Journal')),
                 homeBloc: HomeBloc(

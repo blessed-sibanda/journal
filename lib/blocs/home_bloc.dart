@@ -28,13 +28,13 @@ class HomeBloc {
 
   void _startListeners() {
     // Retrieve Firestore Journal Records as List<Journal> not DocumentSnapshot
-    authenticationApi.getFirebaseAuth().currentUser().then((user) {
-      dbApi.getJournalList(user.uid).listen((journalDocs) {
-        _addListJournal.add(journalDocs);
-      });
-      _journalDeleteController.stream.listen((journal) {
-        dbApi.deleteJournal(journal);
-      });
+    final user = authenticationApi.getFirebaseAuth().currentUser;
+    print('User $user');
+    dbApi.getJournalList(user.uid).listen((journalDocs) {
+      _addListJournal.add(journalDocs);
+    });
+    _journalDeleteController.stream.listen((journal) {
+      dbApi.deleteJournal(journal);
     });
   }
 }

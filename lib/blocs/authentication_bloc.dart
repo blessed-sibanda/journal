@@ -25,8 +25,8 @@ class AuthenticationBloc {
 
   void onAuthChanged() {
     authenticationApi.getFirebaseAuth().authStateChanges().listen((user) {
-      final String uid = user?.uid;
-      addUser.add(uid);
+      final String? uid = user?.uid;
+      addUser.add(uid ?? '');
     });
     _logoutController.stream.listen((logout) {
       if (logout == true) _signOut();

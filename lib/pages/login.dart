@@ -51,7 +51,7 @@ class _LoginState extends State<Login> {
                   decoration: InputDecoration(
                     labelText: 'Email Address',
                     icon: const Icon(Icons.mail_outline),
-                    errorText: snapshot.error.toString(),
+                    errorText: snapshot.error?.toString(),
                   ),
                   onChanged: _loginBloc.emailChanged.add,
                 ),
@@ -64,7 +64,7 @@ class _LoginState extends State<Login> {
                   decoration: InputDecoration(
                     labelText: 'Password',
                     icon: const Icon(Icons.security),
-                    errorText: snapshot.error.toString(),
+                    errorText: snapshot.error?.toString(),
                   ),
                   onChanged: _loginBloc.passwordChanged.add,
                 ),
@@ -101,11 +101,11 @@ class _LoginState extends State<Login> {
           initialData: false,
           stream: _loginBloc.enableLoginCreateButton,
           builder: (BuildContext context, AsyncSnapshot snapshot) =>
-              MaterialButton(
-            elevation: 16.0,
+              ElevatedButton(
             child: const Text('Login'),
-            color: Colors.lightGreen.shade200,
-            disabledColor: Colors.grey.shade100,
+            style: ElevatedButton.styleFrom(
+              primary: Colors.lightGreen.shade200,
+            ),
             onPressed: snapshot.data
                 ? () => _loginBloc.loginOrCreateChanged.add('Login')
                 : null,
