@@ -6,8 +6,8 @@ class AuthenticationBlocProvider extends InheritedWidget {
 
   const AuthenticationBlocProvider({
     Key? key,
-    required Widget child,
     required this.authenticationBloc,
+    required Widget child,
   }) : super(key: key, child: child);
 
   static AuthenticationBlocProvider of(BuildContext context) {
